@@ -76,4 +76,8 @@ public class Bubble : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider collider){
+        Destroy(this.gameObject);
+    }
+
 }
