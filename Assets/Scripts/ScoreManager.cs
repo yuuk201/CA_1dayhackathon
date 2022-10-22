@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private Text text;
 
-    public int score;
+    public static int score;
 
     private float incrimentScoreTimer = 0.0f;
     private float incrimentScoreTime = 0.1f;

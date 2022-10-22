@@ -31,6 +31,8 @@ public class Bubble : MonoBehaviour
 
     private bool isbursted = false;
 
+    private bool isGoal = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,10 +109,14 @@ public class Bubble : MonoBehaviour
         }
     }
 
+    public bool IsGoal()
+    {
+        return isGoal;
+    }
 
     void OnTriggerEnter(Collider collider){
         if(collider.tag=="goal"){
-            SceneManager.LoadScene("ending");
+            isGoal = true;
         }else{
             isBurst = true;
         }

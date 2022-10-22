@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Game : MonoBehaviour
 {
     [SerializeField]
-    private GameObject player;
+    private Bubble player;
 
     [SerializeField]
     private ScoreManager scoreManager;
@@ -26,19 +26,25 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (isGameOver)
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+        } else if (player.IsGoal()) {
+            SceneManager.LoadScene("ending");
         } else {
-            if (!player.activeSelf)
+            if (!player.gameObject.activeSelf)
             {
                 isGameOver = true;
                 gameoverUI.SetActive(true);
                 scoreManager.StopUpdate();
             }
+
+
         }
     }
 }
