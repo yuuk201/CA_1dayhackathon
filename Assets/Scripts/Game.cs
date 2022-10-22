@@ -33,7 +33,7 @@ public class Game : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         } else {
-            if (player == null)
+            if (!player.activeSelf)
             {
                 isGameOver = true;
                 gameoverUI.SetActive(true);
