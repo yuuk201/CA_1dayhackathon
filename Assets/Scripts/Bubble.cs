@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class Bubble : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class Bubble : MonoBehaviour
     private AudioClip bubbledestroy;//シャボン玉破裂音
 
     public AudioSource audioSource;//シャボン玉破裂音
+    private float time;//色変わる時間
 
     [SerializeField]
     private float keepDistance = 13.0f;
@@ -92,6 +95,7 @@ public class Bubble : MonoBehaviour
         }
 
         cameraCount = 0;
+        ColorDest();
     }
 
     void Burst()
@@ -119,6 +123,18 @@ public class Bubble : MonoBehaviour
             isGoal = true;
         }else{
             isBurst = true;
+        }
+    }
+    void ColorDest(){
+        time+=Time.deltaTime;
+        if(time>5.0f){
+            float z = Random.Range(0,9);
+            if(z%2==0){
+                GetComponent<Renderer>().material.SetFloat("_ThinfilmMax", 0.0f);
+            }else{
+                GetComponent<Renderer>().material.SetFloat("_ThinfilmMax", 6.8f);
+            }
+            time=0.0f;
         }
     }
 }
