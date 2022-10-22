@@ -17,11 +17,14 @@ public class Bubble : MonoBehaviour
     private float currentBurstTime = 0.0f;
     private bool isBurst = false;
 
-    public GameObject particle_bubble;//シャボン玉が割れたときに出てくるパーティクル
-    public AudioClip bubbledestroy;//シャボン玉破裂音
-    AudioSource audioSource;//シャボン玉破裂音
-    private float time;//色変わる時間
+    [SerializeField]
+    private GameObject particle_bubble;//シャボン玉が割れたときに出てくるパーティクル
 
+    [SerializeField]
+    private AudioClip bubbledestroy;//シャボン玉破裂音
+
+    public AudioSource audioSource;//シャボン玉破裂音
+    private float time;//色変わる時間
 
     [SerializeField]
     private float keepDistance = 13.0f;
@@ -29,12 +32,12 @@ public class Bubble : MonoBehaviour
     [SerializeField]
     private bool isFollowCamera = false;
 
+    private bool isbursted = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        this.rb = this.GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();//破裂音
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -65,7 +68,7 @@ public class Bubble : MonoBehaviour
             var windVecNor = windVec.normalized;
 
             Vector3 moveForward = Camera.main.transform.up * windVecNor.y + Camera.main.transform.right * windVecNor.x;
-            this.rb.AddForce(moveForward * 2.0f);
+            rb.AddForce(moveForward * 1.5f);
         }
 
 
@@ -84,7 +87,7 @@ public class Bubble : MonoBehaviour
             isBurst = true;
         }
 
-        if (isBurst)
+        if (isBurst && !isbursted)
         {
             Burst();
         }
@@ -97,8 +100,7 @@ public class Bubble : MonoBehaviour
     {
         Instantiate(particle_bubble, this.transform.position, Quaternion.identity);
         audioSource.PlayOneShot(bubbledestroy);
-        Destroy(this.gameObject);
-        
+        this.gameObject.SetActive(false);
     }
 
     void OnWillRenderObject()
