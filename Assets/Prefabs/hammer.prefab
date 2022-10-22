@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3840319751784536796}
   - component: {fileID: 3840319751785666588}
   - component: {fileID: 3840319752697099749}
+  - component: {fileID: 804415530655303305}
   m_Layer: 0
   m_Name: hammer
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f216d6d287ae74b94fb89465d916c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &804415530655303305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840319751787857628}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.076390356, y: 0.2708581, z: 0.618231}
+  m_Center: {x: -0.0010266546, y: 0.033216447, z: 0.08394279}
