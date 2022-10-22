@@ -15,11 +15,15 @@ public class Bubble : MonoBehaviour
     private bool isBurst = false;
 
     public GameObject particle_bubble;//シャボン玉が割れたときに出てくるパーティクル
+    public AudioClip bubbledestroy;//シャボン玉破裂音
+    AudioSource audioSource;//シャボン玉破裂音
 
     // Start is called before the first frame update
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();//破裂音
+
     }
 
     // Update is called once per frame
@@ -79,8 +83,13 @@ public class Bubble : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider){
+        if(collider.tag=="goal"){
+            //ゴール処理書く
+        }
         Instantiate(particle_bubble,this.transform.position,Quaternion.identity);
         Destroy(this.gameObject);
+        audioSource.PlayOneShot(bubbledestroy);
+
 
     }
 

@@ -18,7 +18,7 @@ public class rotatebarrel : MonoBehaviour
         gameObject.transform.Rotate(new Vector3(rotateX,rotateY,rotateZ)*Time.deltaTime);
         pos.z-=0.02f;
         //culTransform.position=pos;
-        if(culTransform.position.z<170.334f || culTransform.position.z>182.02f){
+        if(culTransform.position.z<170.334f || culTransform.position.z>182.02f || culTransform.position.y<1.7f){
             Destroy (this.gameObject);
         }
 
