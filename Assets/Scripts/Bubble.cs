@@ -60,7 +60,7 @@ public class Bubble : MonoBehaviour
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1.0f, 0.0f, 1.0f)).normalized;
             var distance = (transform.position - Camera.main.transform.position).magnitude;
             rb.velocity += cameraForward * Time.deltaTime * (keepDistance - distance) / keepDistance;
-            print((keepDistance - distance) / keepDistance);
+            //print((keepDistance - distance) / keepDistance);
         }
 
         if (isWindMoving)
@@ -95,7 +95,7 @@ public class Bubble : MonoBehaviour
         }
 
         cameraCount = 0;
-        ColorDest();
+        //ColorDest();
     }
 
     void Burst()
@@ -132,6 +132,7 @@ public class Bubble : MonoBehaviour
             if(z%2==0){
                 GetComponent<Renderer>().material.SetFloat("_ThinfilmMax", 0.0f);
             }else{
+                //Debug.Log("a");
                 GetComponent<Renderer>().material.SetFloat("_ThinfilmMax", 6.8f);
             }
             time=0.0f;
