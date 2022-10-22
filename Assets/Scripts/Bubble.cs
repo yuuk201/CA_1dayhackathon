@@ -14,6 +14,8 @@ public class Bubble : MonoBehaviour
     private float currentBurstTime = 0.0f;
     private bool isBurst = false;
 
+    public GameObject particle_bubble;//シャボン玉が割れたときに出てくるパーティクル
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +79,9 @@ public class Bubble : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider){
+        Instantiate(particle_bubble,this.transform.position,Quaternion.identity);
         Destroy(this.gameObject);
+
     }
 
 }
