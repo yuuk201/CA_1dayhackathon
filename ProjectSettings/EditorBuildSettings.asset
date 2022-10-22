@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PlayBubbleTest.unity
+    guid: 53c7c47d331a9f04eaf9e07b22c88fc9
   m_configObjects: {}
