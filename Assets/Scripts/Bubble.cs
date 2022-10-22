@@ -107,7 +107,7 @@ public class Bubble : MonoBehaviour
 
     void OnTriggerEnter(Collider collider){
         if(collider.tag=="goal"){
-            //ゴール処理書く
+            SceneManager.LoadScene("ending");
         }else{
             isBurst = true;
         }
