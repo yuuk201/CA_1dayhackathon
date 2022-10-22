@@ -7,6 +7,12 @@ public class Bubble : MonoBehaviour
     private Vector2 windStart, windEnd;
     private bool isWindMoving = false;
     private Rigidbody rb;
+    private int cameraCount = 0;
+
+    [SerializeField]
+    private float burstTime = 1.0f;
+    private float currentBurstTime = 0.0f;
+    private bool isBurst = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,12 +23,6 @@ public class Bubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //var objectPoint = Camera.main.WorldToScreenPoint(this.transform.position);
-        //var pointScreen = new Vector3(Input.mousePosition.x, Input.mousePosition.y, objectPoint.z);
-        //var pointWorld = Camera.main.ScreenToWorldPoint(pointScreen);
-        //pointWorld.z = this.transform.position.z;
-        //transform.position = pointWorld;
         if (Input.GetMouseButtonDown(0))
         {
             windStart = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -40,10 +40,39 @@ public class Bubble : MonoBehaviour
 
             Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1.0f, 1.0f, 0.0f)).normalized;
             Vector3 moveForward = Camera.main.transform.up * windVecNor.y + Camera.main.transform.right * windVecNor.x;
-            rb.velocity = moveForward * 2.0f;
+            this.rb.AddForce(moveForward * 2.0f);
+        }
 
+        if (cameraCount <= 0)
+        {
+            currentBurstTime += Time.deltaTime;
+        } else {
+            currentBurstTime = 0.0f;
+        }
 
-            //this.rb.AddForce(windVecNor * 2.0f);
+        if (currentBurstTime >= burstTime)
+        {
+            isBurst = true;
+        }
+
+        if (isBurst)
+        {
+            print("Game Over");
+        }
+
+        cameraCount = 0;
+    }
+
+    bool IsBurst()
+    {
+        return isBurst;
+    }
+
+    void OnWillRenderObject()
+    {
+        if (Camera.current.Equals(Camera.main))
+        {
+            cameraCount++;
         }
     }
 
